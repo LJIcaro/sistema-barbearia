@@ -9,7 +9,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     ports:
-      - "5432:5432"
+      - "5423:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     networks:
@@ -32,19 +32,6 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
-    networks:
-      - barbearia-network
-    restart: unless-stopped
-
-  frontend:
-    build:
-      context: ./barbearia-frontend
-      dockerfile: Dockerfile
-    container_name: barbearia-frontend
-    ports:
-      - "3000:80"
-    depends_on:
-      - backend
     networks:
       - barbearia-network
     restart: unless-stopped
