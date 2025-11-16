@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Serviços - Barbearia</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<div class="container">
+    <div class="navbar">
+        <h2>Sistema Barbearia</h2>
+        <div class="navbar-links">
+            <span id="userNameSpan"></span>
+            <a href="/dashboard" id="linkDashboard">Dashboard</a>
+            <a href="/servicos" id="linkServicos">Serviços</a>
+            <a href="/disponibilidades" id="linkDisponibilidades">Disponibilidades</a>
+            <a href="/agendamentos" id="linkAgendamentos">Agendamentos</a>
+            <a href="/meus-agendamentos" id="linkMeusAgendamentos">Meus Agendamentos</a>
+            <a href="/bloqueios" id="linkBloqueios">Bloqueios</a>
+            <button class="btn-logout" onclick="logout()">Sair</button>
+        </div>
+    </div>
+
+    <div class="content-card">
+        <h2>Meus Serviços</h2>
+
+        <div id="servicosList" class="loading">Carregando serviços...</div>
+
+        <hr>
+
+        <h3>Novo / Editar Serviço</h3>
+        <form id="servicoForm">
+            <input type="hidden" id="servicoId"/>
+
+            <div class="form-group">
+                <label for="nomeServico">Nome</label>
+                <input id="nomeServico" type="text" required/>
+            </div>
+
+            <div class="form-group">
+                <label for="descricaoServico">Descrição</label>
+                <textarea id="descricaoServico"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="precoServico">Preço (R$)</label>
+                <input id="precoServico" type="number" step="0.01" min="0" required/>
+            </div>
+
+            <div class="form-group">
+                <label for="duracaoServico">Duração (minutos)</label>
+                <input id="duracaoServico" type="number" min="1" required/>
+            </div>
+
+            <div class="form-group">
+                <label for="materiaisServico">Materiais necessários</label>
+                <textarea id="materiaisServico"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="ativoServico">Ativo</label>
+                <select id="ativoServico">
+                    <option value="true">Sim</option>
+                    <option value="false">Não</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn-primary">Salvar</button>
+            <button type="button" id="cancelarEdicao" class="btn-secondary btn-small">Cancelar Edição</button>
+        </form>
+
+        <p id="servicosMsg" class="info-msg" style="display:none;"></p>
+    </div>
+</div>
+
+<script src="/barbearia-backend/src/main/resources/static/js/main.js"></script>
+<script src="/barbearia-backend/src/main/resources/static/js/servicos.js"></script>
+<script>
+    checkAuth();
+    const user = getUserData();
+    document.getElementById("userNameSpan").textContent = user.userName || "";
+
+    if (!isBarbeiro()) {
+        document.getElementById("linkDashboard").style.display = "none";
+        document.getElementById("linkServicos").style.display = "none";
+        document.getElementById("linkDisponibilidades").style.display = "none";
+        document.getElementById("linkBloqueios").style.display = "none";
+    }
+    if (!isCliente()) {
+        document.getElementById("linkMeusAgendamentos").style.display = "none";
+    }
+</script>
+</body>
+</html>

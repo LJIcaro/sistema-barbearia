@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Agendamentos - Barbearia</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<div class="container">
+    <div class="navbar">
+        <h2>Sistema Barbearia</h2>
+        <div class="navbar-links">
+            <span id="userNameSpan"></span>
+            <a href="/dashboard" id="linkDashboard">Dashboard</a>
+            <a href="/servicos" id="linkServicos">Serviços</a>
+            <a href="/disponibilidades" id="linkDisponibilidades">Disponibilidades</a>
+            <a href="/agendamentos" id="linkAgendamentos">Agendamentos</a>
+            <a href="/meus-agendamentos" id="linkMeusAgendamentos">Meus Agendamentos</a>
+            <a href="/bloqueios" id="linkBloqueios">Bloqueios</a>
+            <button class="btn-logout" onclick="logout()">Sair</button>
+        </div>
+    </div>
+
+    <div class="content-card" id="clienteAgendamentoSection">
+        <h2>Novo Agendamento</h2>
+
+        <div class="form-group">
+            <label for="barbeiroSelect">Barbeiro</label>
+            <select id="barbeiroSelect"></select>
+        </div>
+
+        <div class="form-group">
+            <label for="servicoSelect">Serviço</label>
+            <select id="servicoSelect"></select>
+        </div>
+
+        <div class="form-group">
+            <label for="dataAgendamento">Data</label>
+            <input id="dataAgendamento" type="date"/>
+        </div>
+
+        <button id="buscarHorariosBtn" class="btn-primary">Buscar horários disponíveis</button>
+
+        <div id="horariosContainer" class="mt-2"></div>
+
+        <div class="form-group mt-2">
+            <label for="observacoesAgendamento">Observações</label>
+            <textarea id="observacoesAgendamento" placeholder="Opcional"></textarea>
+        </div>
+
+        <button id="confirmarAgendamentoBtn" class="btn-secondary" disabled>Confirmar agendamento</button>
+
+        <p id="agendamentosMsg" class="info-msg" style="display:none;"></p>
+    </div>
+
+    <div class="content-card" id="barbeiroAgendamentosSection">
+        <h2>Meus Agendamentos (Barbeiro)</h2>
+        <div id="barbeiroAgendamentosList" class="loading">Carregando agendamentos...</div>
+        <p id="barbeiroAgendamentosMsg" class="info-msg" style="display:none;"></p>
+    </div>
+</div>
+
+<script src="/barbearia-backend/src/main/resources/static/js/main.js"></script>
+<script src="/barbearia-backend/src/main/resources/static/js/agendamentos.js"></script>
+<script>
+    checkAuth();
+    const user = getUserData();
+    document.getElementById("userNameSpan").textContent = user.userName || "";
+
+    if (!isBarbeiro()) {
+        document.getElementById("linkDashboard").style.display = "none";
+        document.getElementById("linkServicos").style.display = "none";
+        document.getElementById("linkDisponibilidades").style.display = "none";
+        document.getElementById("linkBloqueios").style.display = "none";
+    }
+    if (!isCliente()) {
+        document.getElementById("linkMeusAgendamentos").style.display = "none";
+        document.getElementById("clienteAgendamentoSection").style.display = "none";
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - Barbearia</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<div class="container">
+    <div class="navbar">
+        <h2>Sistema Barbearia</h2>
+        <div class="navbar-links">
+            <span id="userNameSpan"></span>
+            <a href="/dashboard" id="linkDashboard">Dashboard</a>
+            <a href="/servicos" id="linkServicos">Serviços</a>
+            <a href="/disponibilidades" id="linkDisponibilidades">Disponibilidades</a>
+            <a href="/agendamentos" id="linkAgendamentos">Agendamentos</a>
+            <a href="/meus-agendamentos" id="linkMeusAgendamentos">Meus Agendamentos</a>
+            <a href="/bloqueios" id="linkBloqueios">Bloqueios</a>
+            <button class="btn-logout" onclick="logout()">Sair</button>
+        </div>
+    </div>
+
+    <div class="content-card">
+        <h2>Dashboard do Barbeiro</h2>
+        <p id="dashboardInfo" class="info-msg">Carregando informações...</p>
+
+        <h3 class="mt-2">Agendamentos de Hoje</h3>
+        <div id="agendamentosHoje" class="loading">
+            Carregando agendamentos...
+        </div>
+    </div>
+</div>
+
+<script src="/barbearia-backend/src/main/resources/static/js/main.js"></script>
+<script src="/barbearia-backend/src/main/resources/static/js/dashboard.js"></script>
+<script>
+    checkAuth();
+    const user = getUserData();
+    document.getElementById("userNameSpan").textContent = user.userName || "";
+
+  if (!isBarbeiro()) {
+        document.getElementById("linkDashboard").style.display = "none";
+        document.getElementById("linkServicos").style.display = "none";
+        document.getElementById("linkDisponibilidades").style.display = "none";
+        document.getElementById("linkBloqueios").style.display = "none";
+    }
+    if (!isCliente()) {
+        document.getElementById("linkMeusAgendamentos").style.display = "none";
+    }
+</script>
+</body>
+</html>

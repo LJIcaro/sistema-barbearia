@@ -2,7 +2,9 @@
 /home/ljicaro1/sistema_barbearia/barbearia-backend/src/main/java/com/barbearia/controller/AgendamentoController.java
 /home/ljicaro1/sistema_barbearia/barbearia-backend/src/main/java/com/barbearia/controller/AuthController.java
 /home/ljicaro1/sistema_barbearia/barbearia-backend/src/main/java/com/barbearia/dto/LoginRequest.java
+/home/ljicaro1/sistema_barbearia/barbearia-backend/src/main/java/com/barbearia/service/BloqueioService.java
 /home/ljicaro1/sistema_barbearia/barbearia-backend/src/main/java/com/barbearia/model/Disponibilidade.java
+/home/ljicaro1/sistema_barbearia/barbearia-backend/src/main/java/com/barbearia/controller/BloqueioController.java
 /home/ljicaro1/sistema_barbearia/barbearia-backend/src/main/java/com/barbearia/config/SecurityConfig.java
 /home/ljicaro1/sistema_barbearia/barbearia-backend/src/main/java/com/barbearia/dto/HorarioDisponivelDTO.java
 /home/ljicaro1/sistema_barbearia/barbearia-backend/src/main/java/com/barbearia/repository/BloqueioRepository.java
@@ -33,4 +35,5 @@
 /home/ljicaro1/sistema_barbearia/barbearia-backend/src/main/java/com/barbearia/repository/AgendamentoRepository.java
 /home/ljicaro1/sistema_barbearia/barbearia-backend/src/main/java/com/barbearia/security/JwtAuthenticationFilter.java
 /home/ljicaro1/sistema_barbearia/barbearia-backend/src/main/java/com/barbearia/repository/UsuarioRepository.java
+/home/ljicaro1/sistema_barbearia/barbearia-backend/src/main/java/com/barbearia/controller/ViewController.java
 /home/ljicaro1/sistema_barbearia/barbearia-backend/src/main/java/com/barbearia/service/DisponibilidadeService.java
